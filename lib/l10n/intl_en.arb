@@ -1,4 +1,6 @@
 {
   "@@locale": "en",
-  "helloWorld": "Hello World!"
+  "home_screen_title": "Coffee App",
+  "home" : "Home",
+  "favorite" : "Favorite"
 }

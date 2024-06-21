@@ -1,11 +1,11 @@
-// Corrected main.dart
 import 'package:coffee_app/l10n/generated/l10n.dart';
-import 'package:coffee_app/presentation/routes/routes.dart';
+import 'package:coffee_app/presentation/screens/main_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,9 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final router = createRouter();
-
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Coffee App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en', ''),
       ],
-      routerConfig: router,
+      home: const MainMenu(),
     );
   }
 }
