@@ -1,25 +1,25 @@
-part of 'get_coffee_images_cubit.dart';
+part of 'get_coffee_image_cubit.dart';
 
-class GetCoffeeImagesState extends Equatable {
+class GetCoffeeImageState extends Equatable {
   final GetImagesStatus status;
   final CoffeePhoto? coffeePhoto;
 
-  const GetCoffeeImagesState({
+  const GetCoffeeImageState({
     required this.status,
     this.coffeePhoto,
   });
 
-  factory GetCoffeeImagesState.initial() {
-    return const GetCoffeeImagesState(
+  factory GetCoffeeImageState.initial() {
+    return const GetCoffeeImageState(
       status: GetImagesStatus.initial,
     );
   }
 
-  GetCoffeeImagesState copyWith({
+  GetCoffeeImageState copyWith({
     GetImagesStatus? status,
     CoffeePhoto? coffeePhoto,
   }) {
-    return GetCoffeeImagesState(
+    return GetCoffeeImageState(
       status: status ?? this.status,
       coffeePhoto: coffeePhoto ?? this.coffeePhoto,
     );

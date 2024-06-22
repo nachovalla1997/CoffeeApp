@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 
-class GetCoffeeImagesAPI {
+class GetCoffeeImageAPI {
   static const String _api = 'https://coffee.alexflipnote.dev/random';
 
   Future<File> getCoffeePhoto() async {

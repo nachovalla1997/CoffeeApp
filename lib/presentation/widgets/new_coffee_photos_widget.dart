@@ -1,4 +1,4 @@
-import 'package:coffee_app/business_logic/cubits/get_coffee_images/get_coffee_images_cubit.dart';
+import 'package:coffee_app/business_logic/cubits/get_coffee_image/get_coffee_image_cubit.dart';
 import 'package:coffee_app/presentation/widgets/coffee_card_widget.dart';
 import 'package:coffee_app/utilities/enums.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class NewCoffeePhotosWidget extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: BlocBuilder<GetCoffeeImagesCubit, GetCoffeeImagesState>(
+              child: BlocBuilder<GetCoffeeImageCubit, GetCoffeeImageState>(
                 builder: (context, state) {
                   if (state.status == GetImagesStatus.loading) {
                     return const Center(child: CircularProgressIndicator());
