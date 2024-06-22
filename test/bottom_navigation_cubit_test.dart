@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:coffee_app/business_logic/cubits/cubit/bottom_navigation_cubit.dart';
+import 'package:coffee_app/business_logic/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

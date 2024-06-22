@@ -1,4 +1,4 @@
-import 'package:coffee_app/business_logic/cubits/cubit/bottom_navigation_cubit.dart';
+import 'package:coffee_app/business_logic/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:coffee_app/l10n/generated/l10n.dart';
 import 'package:coffee_app/presentation/widgets/bottom_navigation_bar_widget.dart';
 import 'package:flutter/material.dart';
