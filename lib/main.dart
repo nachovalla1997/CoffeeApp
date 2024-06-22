@@ -1,3 +1,4 @@
+import 'package:coffee_app/application_theme.dart';
 import 'package:coffee_app/bloc_providers.dart';
 import 'package:coffee_app/l10n/generated/l10n.dart';
 import 'package:coffee_app/presentation/screens/main_menu.dart';
@@ -16,10 +17,7 @@ class MyApp extends StatelessWidget {
     return BlocProviders.multiBlocProviders(
       child: MaterialApp(
         title: 'Coffee App',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: ApplicationTheme.themeApp(),
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
