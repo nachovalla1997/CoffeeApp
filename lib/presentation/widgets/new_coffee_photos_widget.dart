@@ -1,11 +1,11 @@
-import 'package:coffee_app/localization.dart';
+import 'package:coffee_app/business_logic/cubits/get_coffee_images/get_coffee_images_cubit.dart';
+import 'package:coffee_app/presentation/widgets/coffee_card_widget.dart';
+import 'package:coffee_app/utilities/enums.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewCoffeePhotosWidget extends StatelessWidget {
-  const NewCoffeePhotosWidget({
-    super.key,
-  });
+  const NewCoffeePhotosWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,73 +13,20 @@ class NewCoffeePhotosWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          children: <Widget>[
+          children: [
             Expanded(
-              child: Card(
-                elevation: 6.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(15.0)),
-                          // image: DecorationImage(
-                          //   image: FileImage(),
-                          //   fit: BoxFit.cover,
-                          // ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ElevatedButton.icon(
-                            onPressed: () {
-                              // TODO: Add to favorites logic
-                            },
-                            icon: const FaIcon(FontAwesomeIcons.solidHeart),
-                            label: Text(Localization.current.add_to_favorite),
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.secondary,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 12.0),
-                              textStyle: const TextStyle(fontSize: 16),
-                            ),
-                          ),
-                          ElevatedButton.icon(
-                            onPressed: () {
-                              // TODO: Skip logic
-                            },
-                            icon: const FaIcon(FontAwesomeIcons.arrowRight),
-                            label: Text(Localization.current.next),
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.brown[900],
-                              backgroundColor: Colors.brown[300],
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 12.0),
-                              textStyle: const TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              child: BlocBuilder<GetCoffeeImagesCubit, GetCoffeeImagesState>(
+                builder: (context, state) {
+                  if (state.status == GetImagesStatus.loading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state.status == GetImagesStatus.error) {
+                    return const Center(child: Text("Error"));
+                  } else if (state.status == GetImagesStatus.loaded) {
+                    return CoffeeCard(coffeePhoto: state.coffeePhoto!);
+                  } else {
+                    return const Center(child: Text("No data"));
+                  }
+                },
               ),
             ),
           ],

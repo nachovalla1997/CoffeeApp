@@ -1,16 +1,16 @@
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 class GetCoffeeImagesAPI {
   static const String _api = 'https://coffee.alexflipnote.dev';
 
-  static Future<dynamic> getCoffeePhoto() async {
+  Future<File> getCoffeePhoto() async {
     final response = await http.get(Uri.parse(_api));
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to load coffee photo');
-    }
+    final documentDirectory = await getApplicationDocumentsDirectory();
+    final file = File('${documentDirectory.path}/coffee_image.jpg');
+    await file.writeAsBytes(response.bodyBytes);
+    return file;
   }
 }
