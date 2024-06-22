@@ -1,6 +1,7 @@
 import 'package:coffee_app/business_logic/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:coffee_app/localization.dart';
 import 'package:coffee_app/presentation/widgets/bottom_navigation_bar_widget.dart';
+import 'package:coffee_app/presentation/widgets/new_coffee_photos_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,8 +25,8 @@ class MainMenu extends StatelessWidget {
           body: IndexedStack(
             index: state.currentIndex,
             children: const [
+              NewCoffeePhotosWidget(),
               Center(child: Text('Home Page')),
-              Center(child: Text('Favorite Page')),
             ],
           ),
         );

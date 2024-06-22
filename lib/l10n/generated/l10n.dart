@@ -79,6 +79,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Add to Favorites`
+  String get add_to_favorite {
+    return Intl.message(
+      'Add to Favorites',
+      name: 'add_to_favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
