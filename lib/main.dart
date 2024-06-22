@@ -1,6 +1,6 @@
+import 'package:coffee_app/localization.dart';
 import 'package:coffee_app/application_theme.dart';
 import 'package:coffee_app/bloc_providers.dart';
-import 'package:coffee_app/l10n/generated/l10n.dart';
 import 'package:coffee_app/presentation/screens/main_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         title: 'Coffee App',
         theme: ApplicationTheme.themeApp(),
         localizationsDelegates: const [
-          S.delegate,
+          Localization.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,

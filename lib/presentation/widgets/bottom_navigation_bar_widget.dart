@@ -1,3 +1,4 @@
+import 'package:coffee_app/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -14,14 +15,14 @@ class BottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
+      items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: FaIcon(FontAwesomeIcons.house, size: 24),
-          label: 'Home',
+          icon: const FaIcon(FontAwesomeIcons.house, size: 24),
+          label: Localization.current.home,
         ),
         BottomNavigationBarItem(
-          icon: FaIcon(FontAwesomeIcons.solidHeart, size: 24),
-          label: 'Favorites',
+          icon: const FaIcon(FontAwesomeIcons.solidHeart, size: 24),
+          label: Localization.current.favorite,
         ),
       ],
       currentIndex: currentIndex,
