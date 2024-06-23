@@ -1,4 +1,5 @@
 import 'package:coffee_app/services/get_coffee_image_service.dart';
+import 'package:coffee_app/services/get_uid_nanoid_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +10,9 @@ class ServiceProviders {
       providers: [
         Provider<GetCoffeeImageService>(
           create: (context) => GetCoffeeImageService(),
+        ),
+        Provider<GetUidNanoidService>(
+          create: (context) => GetUidNanoidService(),
         )
       ],
       child: child,

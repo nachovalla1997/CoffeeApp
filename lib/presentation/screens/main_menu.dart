@@ -1,5 +1,5 @@
 import 'package:coffee_app/business_logic/cubits/bottom_navigation/bottom_navigation_cubit.dart';
-import 'package:coffee_app/business_logic/cubits/get_coffee_image/get_coffee_image_cubit.dart';
+import 'package:coffee_app/business_logic/cubits/coffee_image/coffee_image_cubit.dart';
 import 'package:coffee_app/localization.dart';
 import 'package:coffee_app/presentation/widgets/bottom_navigation_bar_widget.dart';
 import 'package:coffee_app/presentation/widgets/new_coffee_photos_widget.dart';
@@ -11,7 +11,7 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<GetCoffeeImageCubit>().getCoffeePhoto();
+    context.read<CoffeeImageCubit>().getCoffeePhoto();
 
     return BlocBuilder<BottomNavigationCubit, BottomNavigationState>(
       builder: (context, state) {

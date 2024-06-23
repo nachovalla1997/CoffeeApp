@@ -1,5 +1,5 @@
-import 'package:coffee_app/models/coffee_photo.dart';
+import 'dart:typed_data';
 
 abstract class IGetCoffeeImageService {
-  Future<CoffeePhoto> getCoffeePhoto();
+  Future<Uint8List> getCoffeePhoto();
 }

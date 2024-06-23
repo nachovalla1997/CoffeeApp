@@ -1,11 +1,9 @@
-import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:coffee_app/models/coffee_photo.dart';
+import 'package:http/http.dart' as http;
 
 class GetCoffeeImageAdapter {
-  static CoffeePhoto convertToCoffeePhoto(File coffeeImage) {
-    return CoffeePhoto(
-      photo: coffeeImage,
-    );
+  static Uint8List convertToCoffeePhoto(http.Response response) {
+    return response.bodyBytes;
   }
 }

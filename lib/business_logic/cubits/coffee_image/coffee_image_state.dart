@@ -1,4 +1,4 @@
-part of 'get_coffee_image_cubit.dart';
+part of 'coffee_image_cubit.dart';
 
 class GetCoffeeImageState extends Equatable {
   final GetImagesStatus status;
