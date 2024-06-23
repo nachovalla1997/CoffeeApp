@@ -1,6 +1,6 @@
 # Coffee App
 
-A Flutter application for coffee enthusiasts to explore and enjoy various coffee-related features.
+A Flutter application for coffee enthusiasts to explore and enjoy Coffee Images.
 
 ## Table of Contents
 
