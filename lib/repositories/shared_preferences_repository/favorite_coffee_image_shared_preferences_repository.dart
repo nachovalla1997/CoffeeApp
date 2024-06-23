@@ -13,14 +13,6 @@ class FavoriteCoffeeImageSharedPreferencesRepository
   }
 
   @override
-  Future<void> deleteFavoriteCoffeeImage({required String id}) async {
-    await _initDatabase();
-    final favoriteCoffeeImages = _database!.getStringList(favoritesKey) ?? [];
-    favoriteCoffeeImages.remove(id);
-    await _database!.setStringList(favoritesKey, favoriteCoffeeImages);
-  }
-
-  @override
   Future<List<String>> getFavoriteCoffeeImages() async {
     await _initDatabase();
     return _database!.getStringList(favoritesKey) ?? [];

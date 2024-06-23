@@ -8,8 +8,8 @@ class GetCoffeeImageService implements IGetCoffeeImageService {
   final GetCoffeeImageAPI _getCoffeeImagesAPI = GetCoffeeImageAPI();
 
   @override
-  Future<Uint8List> getCoffeePhoto() async {
-    final coffeePhotoFromAPI = await _getCoffeeImagesAPI.getCoffeePhoto();
-    return GetCoffeeImageAdapter.convertToCoffeePhoto(coffeePhotoFromAPI);
+  Future<Uint8List> getCoffeeImage() async {
+    final coffeeImageFromAPI = await _getCoffeeImagesAPI.getCoffeeImage();
+    return GetCoffeeImageAdapter.convertToCoffeeImage(coffeeImageFromAPI);
   }
 }

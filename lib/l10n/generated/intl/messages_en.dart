@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_screen_title": MessageLookupByLibrary.simpleMessage("Coffee App"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
-        "try_again": MessageLookupByLibrary.simpleMessage("Please try again.")
+        "try_again": MessageLookupByLibrary.simpleMessage("Please try again."),
+        "zoom": MessageLookupByLibrary.simpleMessage("Zoom")
       };
 }

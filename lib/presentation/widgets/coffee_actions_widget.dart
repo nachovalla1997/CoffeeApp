@@ -1,4 +1,3 @@
-import 'package:coffee_app/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -16,10 +15,8 @@ class CoffeeActionsWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ElevatedButton.icon(
+          ElevatedButton(
             onPressed: () => onAddToFavorites(),
-            icon: const FaIcon(FontAwesomeIcons.solidHeart),
-            label: Text(Localization.current.add_to_favorite),
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -30,11 +27,10 @@ class CoffeeActionsWidget extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               textStyle: const TextStyle(fontSize: 16),
             ),
+            child: const FaIcon(FontAwesomeIcons.solidHeart),
           ),
-          ElevatedButton.icon(
+          ElevatedButton(
             onPressed: () => onSkip(),
-            icon: const FaIcon(FontAwesomeIcons.arrowRight),
-            label: Text(Localization.current.next),
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.brown[900],
               backgroundColor: Colors.brown[300],
@@ -45,6 +41,7 @@ class CoffeeActionsWidget extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               textStyle: const TextStyle(fontSize: 16),
             ),
+            child: const FaIcon(FontAwesomeIcons.arrowRight),
           ),
         ],
       ),

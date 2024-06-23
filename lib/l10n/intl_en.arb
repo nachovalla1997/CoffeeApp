@@ -7,5 +7,6 @@
   "next" : "Next",
   "error_message" : "Oops! Something went wrong.",
   "try_again" : "Please try again.",
-  "retry" : "Retry"
+  "retry" : "Retry",
+  "zoom" : "Zoom"
 }
