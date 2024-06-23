@@ -28,6 +28,10 @@ class CoffeeImageCubit extends Cubit<GetCoffeeImageState> {
 
   Future getCoffeePhoto() async {
     emit(state.copyWith(status: GetImagesStatus.loading));
+    await _fetchAndSaveCoffeePhoto();
+  }
+
+  Future _fetchAndSaveCoffeePhoto() async {
     try {
       final uidPhoto = _getUidService.getUid();
       final coffeePhotoInBytes = await _getCoffeeImagesService.getCoffeePhoto();
@@ -49,9 +53,10 @@ class CoffeeImageCubit extends Cubit<GetCoffeeImageState> {
       await _coffeeImageRepository.deleteCoffeeImage(id: currentPhotoId);
     } catch (e) {
       emit(state.copyWith(status: GetImagesStatus.error));
+      return;
     }
 
-    await getCoffeePhoto();
+    await _fetchAndSaveCoffeePhoto();
   }
 
   Future addCoffeePhotoToFavorites({required String currentPhotoId}) async {
@@ -61,8 +66,9 @@ class CoffeeImageCubit extends Cubit<GetCoffeeImageState> {
           id: currentPhotoId);
     } catch (e) {
       emit(state.copyWith(status: GetImagesStatus.error));
+      return;
     }
 
-    await getCoffeePhoto();
+    await _fetchAndSaveCoffeePhoto();
   }
 }

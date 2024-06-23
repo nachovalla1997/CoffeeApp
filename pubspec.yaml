@@ -19,8 +19,6 @@ dependencies:
   flutter_bloc: ^8.1.6
   equatable: ^2.0.5
   bloc: ^8.1.4
-  bloc_test: ^9.1.7
-  mocktail: ^1.0.4
   http: ^1.2.1
   google_fonts: ^6.2.1
   font_awesome_flutter: ^10.7.0
@@ -29,16 +27,18 @@ dependencies:
   image: ^4.2.0
   nanoid: ^1.0.0
   shared_preferences: ^2.2.3
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   intl_utils: ^2.8.7
-
   flutter_lints: ^3.0.0
   build_runner: ^2.4.11
-
+  bloc_test: ^9.1.7
+  mocktail: ^1.0.4
+  mockito: ^5.4.4
 
 flutter_intl:
   enabled: true
