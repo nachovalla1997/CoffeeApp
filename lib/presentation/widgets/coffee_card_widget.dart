@@ -20,7 +20,9 @@ class CoffeeCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          CoffeeImageWidget(coffeeImage: coffeeImage),
+          Expanded(
+            child: CoffeeImageWidget(coffeeImage: coffeeImage),
+          ),
           CoffeeActionsWidget(
             onAddToFavorites: () {
               context.read<CoffeeImageCubit>().getCoffeeImage();

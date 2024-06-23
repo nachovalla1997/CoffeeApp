@@ -8,17 +8,15 @@ class CoffeeImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(15.0),
-          ),
-          image: DecorationImage(
-            image: FileImage(coffeeImage.image),
-            fit: BoxFit.cover,
-          ),
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(15.0),
+        ),
+        image: DecorationImage(
+          image: FileImage(coffeeImage.image),
+          fit: BoxFit.cover,
         ),
       ),
     );
