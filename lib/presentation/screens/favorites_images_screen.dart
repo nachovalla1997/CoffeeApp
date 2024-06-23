@@ -35,6 +35,7 @@ class FavoriteImagesScreenState extends State<FavoriteImagesScreen> {
               child: BlocBuilder<FavoriteCoffeeCubit, FavoriteCoffeeState>(
                 builder: (context, stateFavorite) {
                   if (stateFavorite.status == GetFavoriteImagesStatus.loaded) {
+                    // TODO: Add case where there are no favorite images.
                     return GridViewWidget(
                       crossAxisCount: stateSlider.sliderValue.toInt(),
                       favoriteImages: stateFavorite.favoriteImages,
