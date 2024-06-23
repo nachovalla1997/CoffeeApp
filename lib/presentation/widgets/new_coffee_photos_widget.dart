@@ -1,5 +1,6 @@
 import 'package:coffee_app/business_logic/cubits/coffee_image/coffee_image_cubit.dart';
 import 'package:coffee_app/presentation/widgets/coffee_card_widget.dart';
+import 'package:coffee_app/presentation/widgets/progress_indicator/coffee_progress_indicator.dart';
 import 'package:coffee_app/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,7 @@ class NewCoffeePhotosWidget extends StatelessWidget {
                 builder: (context, state) {
                   if (state.status == GetImagesStatus.loading) {
                     // TODO: Improve the loading widget
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CoffeeProgressIndicator());
                   } else if (state.status == GetImagesStatus.error) {
                     // TODO: Implement the error message
                     return const Center(child: Text("Error"));
