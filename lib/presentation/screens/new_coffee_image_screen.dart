@@ -22,15 +22,11 @@ class NewCoffeeImagesScreen extends StatelessWidget {
                   if (state.status == GetImageStatus.loading) {
                     return const Center(child: CoffeeProgressIndicator());
                   } else if (state.status == GetImageStatus.error) {
-                    return ErrorScreen(onRetry: () {
-                      context.read<CoffeeImageCubit>().getCoffeeImage();
-                    });
+                    return _errorScreen(context);
                   } else if (state.status == GetImageStatus.loaded) {
                     return CoffeeCard(coffeeImage: state.coffeeImage!);
                   } else {
-                    return ErrorScreen(onRetry: () {
-                      context.read<CoffeeImageCubit>().getCoffeeImage();
-                    });
+                    return _errorScreen(context);
                   }
                 },
               ),
@@ -39,5 +35,11 @@ class NewCoffeeImagesScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  ErrorScreen _errorScreen(BuildContext context) {
+    return ErrorScreen(onRetry: () {
+      context.read<CoffeeImageCubit>().getCoffeeImage();
+    });
   }
 }

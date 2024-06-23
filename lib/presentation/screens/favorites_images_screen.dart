@@ -1,6 +1,7 @@
 import 'package:coffee_app/business_logic/cubits/favorite_coffee/favorite_coffee_cubit.dart';
 import 'package:coffee_app/business_logic/cubits/zoom_slider/zoom_slider_cubit.dart';
-import 'package:coffee_app/presentation/widgets/coffee_image_widget.dart';
+import 'package:coffee_app/presentation/screens/error_screen.dart';
+import 'package:coffee_app/presentation/widgets/grid_view_widget.dart';
 import 'package:coffee_app/presentation/widgets/progress_indicator/coffee_progress_indicator.dart';
 import 'package:coffee_app/presentation/widgets/zoom_slider_widget.dart';
 import 'package:coffee_app/utilities/enums.dart';
@@ -22,34 +23,30 @@ class FavoriteImagesScreenState extends State<FavoriteImagesScreen> {
         return Column(
           children: [
             Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ZoomSliderWidget(
-                  onSliderChanged: (value) {
-                    context.read<ZoomSliderCubit>().changeSliderValue(value);
-                  },
-                  sliderValue: stateSlider.sliderValue,
-                )),
+              padding: const EdgeInsets.all(12.0),
+              child: ZoomSliderWidget(
+                onSliderChanged: (value) {
+                  context.read<ZoomSliderCubit>().changeSliderValue(value);
+                },
+                sliderValue: stateSlider.sliderValue,
+              ),
+            ),
             Expanded(
               child: BlocBuilder<FavoriteCoffeeCubit, FavoriteCoffeeState>(
                 builder: (context, stateFavorite) {
                   if (stateFavorite.status == GetFavoriteImagesStatus.loaded) {
-                    return GridView.builder(
-                      padding: const EdgeInsets.all(8.0),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: stateSlider.sliderValue.toInt(),
-                        crossAxisSpacing: 8.0,
-                        mainAxisSpacing: 8.0,
-                      ),
-                      itemCount: stateFavorite.favoriteImages.length,
-                      itemBuilder: (context, index) {
-                        return GridTile(
-                            child: CoffeeImageWidget(
-                          coffeeImage: stateFavorite.favoriteImages[index],
-                        ));
-                      },
+                    return GridViewWidget(
+                      crossAxisCount: stateSlider.sliderValue.toInt(),
+                      favoriteImages: stateFavorite.favoriteImages,
                     );
-                  } else {
+                  } else if (stateFavorite.status ==
+                      GetFavoriteImagesStatus.loading) {
                     return const CoffeeProgressIndicator();
+                  } else if (stateFavorite.status ==
+                      GetFavoriteImagesStatus.error) {
+                    return _errorScreen(context);
+                  } else {
+                    return _errorScreen(context);
                   }
                 },
               ),
@@ -58,5 +55,11 @@ class FavoriteImagesScreenState extends State<FavoriteImagesScreen> {
         );
       },
     );
+  }
+
+  ErrorScreen _errorScreen(BuildContext context) {
+    return ErrorScreen(onRetry: () {
+      context.read<FavoriteCoffeeCubit>().getFavoriteImages();
+    });
   }
 }

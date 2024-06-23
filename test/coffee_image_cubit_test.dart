@@ -23,13 +23,11 @@ import 'mocks/test.mocks.mocks.dart';
 ])
 void main() {
   late MockICoffeeImageRepository mockCoffeeImageRepository;
-  late MockIFavoriteCoffeeImageRepository mockFavoriteCoffeeImageRepository;
   late MockIGetCoffeeImageService mockGetCoffeeImageService;
   late MockIGetUidService mockGetUidService;
 
   setUp(() {
     mockCoffeeImageRepository = MockICoffeeImageRepository();
-    mockFavoriteCoffeeImageRepository = MockIFavoriteCoffeeImageRepository();
     mockGetCoffeeImageService = MockIGetCoffeeImageService();
     mockGetUidService = MockIGetUidService();
   });

@@ -18,22 +18,24 @@ class MainMenu extends StatelessWidget {
 
     return BlocBuilder<BottomNavigationCubit, BottomNavigationState>(
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(Localization.current.home_screen_title),
-          ),
-          bottomNavigationBar: BottomNavigationBarWidget(
-            currentIndex: state.currentIndex,
-            onTap: (index) {
-              context.read<BottomNavigationCubit>().changeIndex(index);
-            },
-          ),
-          body: IndexedStack(
-            index: state.currentIndex,
-            children: const [
-              NewCoffeeImagesScreen(),
-              FavoriteImagesScreen(),
-            ],
+        return SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text(Localization.current.home_screen_title),
+            ),
+            bottomNavigationBar: BottomNavigationBarWidget(
+              currentIndex: state.currentIndex,
+              onTap: (index) {
+                context.read<BottomNavigationCubit>().changeIndex(index);
+              },
+            ),
+            body: IndexedStack(
+              index: state.currentIndex,
+              children: const [
+                NewCoffeeImagesScreen(),
+                FavoriteImagesScreen(),
+              ],
+            ),
           ),
         );
       },
