@@ -99,6 +99,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops! Something went wrong.`
+  String get error_message {
+    return Intl.message(
+      'Oops! Something went wrong.',
+      name: 'error_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please try again.`
+  String get try_again {
+    return Intl.message(
+      'Please try again.',
+      name: 'try_again',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

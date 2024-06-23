@@ -5,11 +5,10 @@ class CoffeeProgressIndicator extends StatefulWidget {
   const CoffeeProgressIndicator({super.key});
 
   @override
-  _CoffeeProgressIndicatorState createState() =>
-      _CoffeeProgressIndicatorState();
+  CoffeeProgressIndicatorState createState() => CoffeeProgressIndicatorState();
 }
 
-class _CoffeeProgressIndicatorState extends State<CoffeeProgressIndicator>
+class CoffeeProgressIndicatorState extends State<CoffeeProgressIndicator>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

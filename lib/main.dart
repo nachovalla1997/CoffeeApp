@@ -1,7 +1,7 @@
 import 'package:coffee_app/application_theme.dart';
 import 'package:coffee_app/bloc_providers.dart';
 import 'package:coffee_app/localization.dart';
-import 'package:coffee_app/presentation/screens/main_menu.dart';
+import 'package:coffee_app/presentation/main_menu.dart';
 import 'package:coffee_app/repository_provider.dart';
 import 'package:coffee_app/service_providers.dart';
 import 'package:flutter/material.dart';

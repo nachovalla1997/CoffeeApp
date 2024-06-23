@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CoffeeActionsWidget extends StatelessWidget {
-  final Function onAddToFavorites;
-  final Function onSkip;
+  final VoidCallback onAddToFavorites;
+  final VoidCallback onSkip;
 
   const CoffeeActionsWidget(
       {super.key, required this.onAddToFavorites, required this.onSkip});

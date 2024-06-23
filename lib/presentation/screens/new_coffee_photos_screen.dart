@@ -1,12 +1,13 @@
 import 'package:coffee_app/business_logic/cubits/coffee_image/coffee_image_cubit.dart';
+import 'package:coffee_app/presentation/screens/error_screen.dart';
 import 'package:coffee_app/presentation/widgets/coffee_card_widget.dart';
 import 'package:coffee_app/presentation/widgets/progress_indicator/coffee_progress_indicator.dart';
 import 'package:coffee_app/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NewCoffeePhotosWidget extends StatelessWidget {
-  const NewCoffeePhotosWidget({super.key});
+class NewCoffeePhotosScreen extends StatelessWidget {
+  const NewCoffeePhotosScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +20,17 @@ class NewCoffeePhotosWidget extends StatelessWidget {
               child: BlocBuilder<CoffeeImageCubit, GetCoffeeImageState>(
                 builder: (context, state) {
                   if (state.status == GetImagesStatus.loading) {
-                    // TODO: Improve the loading widget
                     return const Center(child: CoffeeProgressIndicator());
                   } else if (state.status == GetImagesStatus.error) {
-                    // TODO: Implement the error message
-                    return const Center(child: Text("Error"));
+                    return ErrorScreen(onRetry: () {
+                      context.read<CoffeeImageCubit>().getCoffeePhoto();
+                    });
                   } else if (state.status == GetImagesStatus.loaded) {
                     return CoffeeCard(coffeePhoto: state.coffeePhoto!);
                   } else {
-                    // TODO: Implement the no data message
-                    return const Center(child: Text("No data"));
+                    return ErrorScreen(onRetry: () {
+                      context.read<CoffeeImageCubit>().getCoffeePhoto();
+                    });
                   }
                 },
               ),
