@@ -1,14 +1,14 @@
 import 'package:coffee_app/business_logic/cubits/coffee_image/coffee_image_cubit.dart';
-import 'package:coffee_app/models/coffee_photo.dart';
+import 'package:coffee_app/models/coffee_image.dart';
 import 'package:coffee_app/presentation/widgets/coffee_actions_widget.dart';
 import 'package:coffee_app/presentation/widgets/coffee_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CoffeeCard extends StatelessWidget {
-  final CoffeePhoto coffeePhoto;
+  final CoffeeImage coffeeImage;
 
-  const CoffeeCard({super.key, required this.coffeePhoto});
+  const CoffeeCard({super.key, required this.coffeeImage});
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +19,17 @@ class CoffeeCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          CoffeeImageWidget(coffeePhoto: coffeePhoto),
+          CoffeeImageWidget(coffeeImage: coffeeImage),
           CoffeeActionsWidget(
             onAddToFavorites: () {
               context
                   .read<CoffeeImageCubit>()
-                  .addCoffeePhotoToFavorites(currentPhotoId: coffeePhoto.id);
+                  .addCoffeeImageToFavorites(currentImageId: coffeeImage.id);
             },
             onSkip: () {
               context
                   .read<CoffeeImageCubit>()
-                  .nextCoffeePhoto(currentPhotoId: coffeePhoto.id);
+                  .nextCoffeeImage(currentImageId: coffeeImage.id);
             },
           ),
         ],

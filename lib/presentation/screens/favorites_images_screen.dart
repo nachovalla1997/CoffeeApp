@@ -3,14 +3,14 @@ import 'package:coffee_app/presentation/widgets/zoom_slider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FavoritePhotosScreen extends StatefulWidget {
-  const FavoritePhotosScreen({super.key});
+class FavoriteImagesScreen extends StatefulWidget {
+  const FavoriteImagesScreen({super.key});
 
   @override
-  FavoritePhotosScreenState createState() => FavoritePhotosScreenState();
+  FavoriteImagesScreenState createState() => FavoriteImagesScreenState();
 }
 
-class FavoritePhotosScreenState extends State<FavoritePhotosScreen> {
+class FavoriteImagesScreenState extends State<FavoriteImagesScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ZoomSliderCubit, ZoomSliderState>(

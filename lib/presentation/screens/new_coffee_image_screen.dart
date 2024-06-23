@@ -6,8 +6,8 @@ import 'package:coffee_app/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NewCoffeePhotosScreen extends StatelessWidget {
-  const NewCoffeePhotosScreen({super.key});
+class NewCoffeeImagesScreen extends StatelessWidget {
+  const NewCoffeeImagesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +19,17 @@ class NewCoffeePhotosScreen extends StatelessWidget {
             Expanded(
               child: BlocBuilder<CoffeeImageCubit, GetCoffeeImageState>(
                 builder: (context, state) {
-                  if (state.status == GetImagesStatus.loading) {
+                  if (state.status == GetImageStatus.loading) {
                     return const Center(child: CoffeeProgressIndicator());
-                  } else if (state.status == GetImagesStatus.error) {
+                  } else if (state.status == GetImageStatus.error) {
                     return ErrorScreen(onRetry: () {
-                      context.read<CoffeeImageCubit>().getCoffeePhoto();
+                      context.read<CoffeeImageCubit>().getCoffeeImage();
                     });
-                  } else if (state.status == GetImagesStatus.loaded) {
-                    return CoffeeCard(coffeePhoto: state.coffeePhoto!);
+                  } else if (state.status == GetImageStatus.loaded) {
+                    return CoffeeCard(coffeeImage: state.coffeeImage!);
                   } else {
                     return ErrorScreen(onRetry: () {
-                      context.read<CoffeeImageCubit>().getCoffeePhoto();
+                      context.read<CoffeeImageCubit>().getCoffeeImage();
                     });
                   }
                 },

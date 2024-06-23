@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 class GetCoffeeImageAPI {
   static const String _api = 'https://coffee.alexflipnote.dev/random';
 
-  Future<http.Response> getCoffeePhoto() async {
+  Future<http.Response> getCoffeeImage() async {
     final response = await http.get(Uri.parse(_api));
 
     if (response.statusCode != 200) {

@@ -1,10 +1,10 @@
-import 'package:coffee_app/models/coffee_photo.dart';
+import 'package:coffee_app/models/coffee_image.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeImageWidget extends StatelessWidget {
-  final CoffeePhoto coffeePhoto;
+  final CoffeeImage coffeeImage;
 
-  const CoffeeImageWidget({super.key, required this.coffeePhoto});
+  const CoffeeImageWidget({super.key, required this.coffeeImage});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CoffeeImageWidget extends StatelessWidget {
             top: Radius.circular(15.0),
           ),
           image: DecorationImage(
-            image: FileImage(coffeePhoto.photo),
+            image: FileImage(coffeeImage.image),
             fit: BoxFit.cover,
           ),
         ),
