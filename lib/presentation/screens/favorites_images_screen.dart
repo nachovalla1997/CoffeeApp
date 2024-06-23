@@ -2,6 +2,7 @@ import 'package:coffee_app/business_logic/cubits/favorite_coffee/favorite_coffee
 import 'package:coffee_app/business_logic/cubits/zoom_slider/zoom_slider_cubit.dart';
 import 'package:coffee_app/presentation/screens/error_screen.dart';
 import 'package:coffee_app/presentation/widgets/grid_view_widget.dart';
+import 'package:coffee_app/presentation/widgets/no_favorites_widget.dart';
 import 'package:coffee_app/presentation/widgets/progress_indicator/coffee_progress_indicator.dart';
 import 'package:coffee_app/presentation/widgets/zoom_slider_widget.dart';
 import 'package:coffee_app/utilities/enums.dart';
@@ -18,28 +19,42 @@ class FavoriteImagesScreen extends StatefulWidget {
 class FavoriteImagesScreenState extends State<FavoriteImagesScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ZoomSliderCubit, ZoomSliderState>(
-      builder: (context, stateSlider) {
+    return BlocBuilder<FavoriteCoffeeCubit, FavoriteCoffeeState>(
+      builder: (context, stateFavorite) {
         return Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: ZoomSliderWidget(
-                onSliderChanged: (value) {
-                  context.read<ZoomSliderCubit>().changeSliderValue(value);
-                },
-                sliderValue: stateSlider.sliderValue,
-              ),
-            ),
-            Expanded(
-              child: BlocBuilder<FavoriteCoffeeCubit, FavoriteCoffeeState>(
-                builder: (context, stateFavorite) {
-                  if (stateFavorite.status == GetFavoriteImagesStatus.loaded) {
-                    // TODO: Add case where there are no favorite images.
-                    return GridViewWidget(
-                      crossAxisCount: stateSlider.sliderValue.toInt(),
-                      favoriteImages: stateFavorite.favoriteImages,
+            if (_isZoomSliderShow(stateFavorite))
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: BlocBuilder<ZoomSliderCubit, ZoomSliderState>(
+                  builder: (context, stateSlider) {
+                    return ZoomSliderWidget(
+                      onSliderChanged: (value) {
+                        context
+                            .read<ZoomSliderCubit>()
+                            .changeSliderValue(value);
+                      },
+                      sliderValue: stateSlider.sliderValue,
                     );
+                  },
+                ),
+              ),
+            Expanded(
+              child: Builder(
+                builder: (context) {
+                  if (stateFavorite.status == GetFavoriteImagesStatus.loaded) {
+                    if (stateFavorite.favoriteImages.isEmpty) {
+                      return const NoFavoritesWidget();
+                    } else {
+                      return BlocBuilder<ZoomSliderCubit, ZoomSliderState>(
+                        builder: (context, stateSlider) {
+                          return GridViewWidget(
+                            crossAxisCount: stateSlider.sliderValue.toInt(),
+                            favoriteImages: stateFavorite.favoriteImages,
+                          );
+                        },
+                      );
+                    }
                   } else if (stateFavorite.status ==
                       GetFavoriteImagesStatus.loading) {
                     return const CoffeeProgressIndicator();
@@ -56,6 +71,11 @@ class FavoriteImagesScreenState extends State<FavoriteImagesScreen> {
         );
       },
     );
+  }
+
+  bool _isZoomSliderShow(FavoriteCoffeeState stateFavorite) {
+    return stateFavorite.status == GetFavoriteImagesStatus.loaded &&
+        stateFavorite.favoriteImages.isNotEmpty;
   }
 
   ErrorScreen _errorScreen(BuildContext context) {
