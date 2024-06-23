@@ -10,7 +10,7 @@ class CoffeeImagePathProviderRepository implements ICoffeeImageRepository {
   @override
   Future<CoffeePhoto> saveCoffeeImage(
       {required Uint8List coffeeImage, required String id}) async {
-    final image = img.decodeJpg(coffeeImage);
+    final image = img.decodeImage(coffeeImage);
     if (image == null) {
       throw Exception('Invalid image data');
     }

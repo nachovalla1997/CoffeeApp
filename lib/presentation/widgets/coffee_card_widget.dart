@@ -21,7 +21,11 @@ class CoffeeCard extends StatelessWidget {
         children: [
           CoffeeImageWidget(coffeePhoto: coffeePhoto),
           CoffeeActionsWidget(
-            onAddToFavorites: () {},
+            onAddToFavorites: () {
+              context
+                  .read<CoffeeImageCubit>()
+                  .addCoffeePhotoToFavorites(currentPhotoId: coffeePhoto.id);
+            },
             onSkip: () {
               context
                   .read<CoffeeImageCubit>()

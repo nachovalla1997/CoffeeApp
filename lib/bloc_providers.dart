@@ -1,6 +1,7 @@
 import 'package:coffee_app/business_logic/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:coffee_app/business_logic/cubits/coffee_image/coffee_image_cubit.dart';
-import 'package:coffee_app/repositories/coffee_image_path_provider_repository.dart';
+import 'package:coffee_app/repositories/path_provider_repository/coffee_image_path_provider_repository.dart';
+import 'package:coffee_app/repositories/shared_preferences_repository/favorite_coffee_image_shared_preferences_repository.dart';
 import 'package:coffee_app/services/get_coffee_image_service.dart';
 import 'package:coffee_app/services/get_uid_nanoid_service.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,8 @@ class BlocProviders {
             getUidService: context.read<GetUidNanoidService>(),
             coffeeImageRepository:
                 context.read<CoffeeImagePathProviderRepository>(),
+            favoriteCoffeeImageRepository:
+                context.read<FavoriteCoffeeImageSharedPreferencesRepository>(),
           ),
         ),
       ],
