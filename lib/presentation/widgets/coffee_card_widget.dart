@@ -1,7 +1,9 @@
+import 'package:coffee_app/business_logic/cubits/coffee_image/coffee_image_cubit.dart';
 import 'package:coffee_app/models/coffee_photo.dart';
 import 'package:coffee_app/presentation/widgets/coffee_actions_widget.dart';
 import 'package:coffee_app/presentation/widgets/coffee_image_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CoffeeCard extends StatelessWidget {
   final CoffeePhoto coffeePhoto;
@@ -20,7 +22,11 @@ class CoffeeCard extends StatelessWidget {
           CoffeeImageWidget(coffeePhoto: coffeePhoto),
           CoffeeActionsWidget(
             onAddToFavorites: () {},
-            onSkip: () {},
+            onSkip: () {
+              context
+                  .read<CoffeeImageCubit>()
+                  .nextCoffeePhoto(currentPhotoId: coffeePhoto.id);
+            },
           ),
         ],
       ),

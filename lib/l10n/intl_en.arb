@@ -2,7 +2,7 @@
   "@@locale": "en",
   "home_screen_title": "Coffee App",
   "home" : "Home",
-  "favorite" : "Favorite",
+  "favorite" : "Favorites",
   "add_to_favorite" : "Add to Favorites",
   "next" : "Next"
 }

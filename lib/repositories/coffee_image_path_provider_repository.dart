@@ -16,14 +16,25 @@ class CoffeeImagePathProviderRepository implements ICoffeeImageRepository {
     }
 
     final documentDirectory = await getApplicationDocumentsDirectory();
-
     final file = File('${documentDirectory.path}/$id.jpg');
-
     await file.writeAsBytes(coffeeImage);
 
     return CoffeePhoto(
       id: id,
       photo: file,
     );
+  }
+
+  @override
+  Future<void> deleteCoffeeImage({required String id}) async {
+    final documentDirectory = await getApplicationDocumentsDirectory();
+    final filePath = '${documentDirectory.path}/$id.jpg';
+    final file = File(filePath);
+
+    if (await file.exists()) {
+      await file.delete();
+    } else {
+      throw Exception('File not found');
+    }
   }
 }

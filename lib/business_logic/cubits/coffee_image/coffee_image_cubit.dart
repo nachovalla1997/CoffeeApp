@@ -38,4 +38,15 @@ class CoffeeImageCubit extends Cubit<GetCoffeeImageState> {
       emit(state.copyWith(status: GetImagesStatus.error));
     }
   }
+
+  Future nextCoffeePhoto({required String currentPhotoId}) async {
+    emit(state.copyWith(status: GetImagesStatus.loading));
+    try {
+      await _coffeeImageRepository.deleteCoffeeImage(id: currentPhotoId);
+    } catch (e) {
+      emit(state.copyWith(status: GetImagesStatus.error));
+    }
+
+    await getCoffeePhoto();
+  }
 }

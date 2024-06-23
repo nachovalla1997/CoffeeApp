@@ -18,12 +18,15 @@ class NewCoffeePhotosWidget extends StatelessWidget {
               child: BlocBuilder<CoffeeImageCubit, GetCoffeeImageState>(
                 builder: (context, state) {
                   if (state.status == GetImagesStatus.loading) {
+                    // TODO: Improve the loading widget
                     return const Center(child: CircularProgressIndicator());
                   } else if (state.status == GetImagesStatus.error) {
+                    // TODO: Implement the error message
                     return const Center(child: Text("Error"));
                   } else if (state.status == GetImagesStatus.loaded) {
                     return CoffeeCard(coffeePhoto: state.coffeePhoto!);
                   } else {
+                    // TODO: Implement the no data message
                     return const Center(child: Text("No data"));
                   }
                 },

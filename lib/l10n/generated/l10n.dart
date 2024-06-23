@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `Favorite`
+  /// `Favorites`
   String get favorite {
     return Intl.message(
-      'Favorite',
+      'Favorites',
       name: 'favorite',
       desc: '',
       args: [],
