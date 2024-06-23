@@ -1,6 +1,9 @@
+import 'package:coffee_app/application_theme.dart';
 import 'package:coffee_app/bloc_providers.dart';
-import 'package:coffee_app/l10n/generated/l10n.dart';
-import 'package:coffee_app/presentation/screens/main_menu.dart';
+import 'package:coffee_app/localization.dart';
+import 'package:coffee_app/presentation/main_menu.dart';
+import 'package:coffee_app/repository_provider.dart';
+import 'package:coffee_app/service_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -13,23 +16,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProviders.multiBlocProviders(
-      child: MaterialApp(
-        title: 'Coffee App',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+    return RepositoryProviders.multiRepositoryProvider(
+      child: ServiceProviders.multiServiceProvider(
+        child: BlocProviders.multiBlocProviders(
+          child: MaterialApp(
+            title: 'Coffee App',
+            theme: ApplicationTheme.themeApp(),
+            localizationsDelegates: const [
+              Localization.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en', ''),
+            ],
+            home: const MainMenu(),
+          ),
+          context: context,
         ),
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('en', ''),
-        ],
-        home: const MainMenu(),
+        context: context,
       ),
       context: context,
     );

@@ -70,11 +70,61 @@ class S {
     );
   }
 
-  /// `Favorite`
+  /// `Favorites`
   String get favorite {
     return Intl.message(
-      'Favorite',
+      'Favorites',
       name: 'favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to Favorites`
+  String get add_to_favorite {
+    return Intl.message(
+      'Add to Favorites',
+      name: 'add_to_favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Something went wrong.`
+  String get error_message {
+    return Intl.message(
+      'Oops! Something went wrong.',
+      name: 'error_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please try again.`
+  String get try_again {
+    return Intl.message(
+      'Please try again.',
+      name: 'try_again',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
       desc: '',
       args: [],
     );
