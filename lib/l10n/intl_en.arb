@@ -8,5 +8,7 @@
   "error_message" : "Oops! Something went wrong.",
   "try_again" : "Please try again.",
   "retry" : "Retry",
-  "zoom" : "Zoom"
+  "zoom" : "Zoom",
+  "no_favorites_yet" : "No Favorites Yet",
+  "add_favorites" : "Add photos to your favorites to see them here."
 }

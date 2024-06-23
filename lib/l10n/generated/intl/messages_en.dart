@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add_favorites": MessageLookupByLibrary.simpleMessage(
+            "Add photos to your favorites to see them here."),
         "add_to_favorite":
             MessageLookupByLibrary.simpleMessage("Add to Favorites"),
         "error_message":
@@ -30,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "home_screen_title": MessageLookupByLibrary.simpleMessage("Coffee App"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "no_favorites_yet":
+            MessageLookupByLibrary.simpleMessage("No Favorites Yet"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "try_again": MessageLookupByLibrary.simpleMessage("Please try again."),
         "zoom": MessageLookupByLibrary.simpleMessage("Zoom")
