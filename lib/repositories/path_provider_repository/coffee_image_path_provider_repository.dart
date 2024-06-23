@@ -37,4 +37,23 @@ class CoffeeImagePathProviderRepository implements ICoffeeImageRepository {
       throw Exception('File not found');
     }
   }
+
+  @override
+  Future<List<CoffeeImage>> getCoffeeImages({required List<String> ids}) async {
+    final documentDirectory = await getApplicationDocumentsDirectory();
+    final List<CoffeeImage> coffeeImages = [];
+
+    for (final id in ids) {
+      final filePath = '${documentDirectory.path}/$id.jpg';
+      final file = File(filePath);
+
+      if (await file.exists()) {
+        coffeeImages.add(CoffeeImage(id: id, image: file));
+      } else {
+        throw Exception('File not found');
+      }
+    }
+
+    return coffeeImages;
+  }
 }
