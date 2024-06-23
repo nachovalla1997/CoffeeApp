@@ -26,8 +26,6 @@ class BlocProviders {
             getUidService: context.read<GetUidNanoidService>(),
             coffeeImageRepository:
                 context.read<CoffeeImagePathProviderRepository>(),
-            favoriteCoffeeImageRepository:
-                context.read<FavoriteCoffeeImageSharedPreferencesRepository>(),
           ),
         ),
         BlocProvider(

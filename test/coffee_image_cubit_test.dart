@@ -54,7 +54,6 @@ void main() {
           getCoffeeImagesService: mockGetCoffeeImageService,
           getUidService: mockGetUidService,
           coffeeImageRepository: mockCoffeeImageRepository,
-          favoriteCoffeeImageRepository: mockFavoriteCoffeeImageRepository,
         );
       },
       act: (cubit) => cubit.getCoffeeImage(),
@@ -76,7 +75,6 @@ void main() {
           getCoffeeImagesService: mockGetCoffeeImageService,
           getUidService: mockGetUidService,
           coffeeImageRepository: mockCoffeeImageRepository,
-          favoriteCoffeeImageRepository: mockFavoriteCoffeeImageRepository,
         );
       },
       act: (cubit) => cubit.getCoffeeImage(),
@@ -102,7 +100,6 @@ void main() {
           getCoffeeImagesService: mockGetCoffeeImageService,
           getUidService: mockGetUidService,
           coffeeImageRepository: mockCoffeeImageRepository,
-          favoriteCoffeeImageRepository: mockFavoriteCoffeeImageRepository,
         );
       },
       act: (cubit) => cubit.nextCoffeeImage(currentImageId: 'current_image_id'),
@@ -123,7 +120,6 @@ void main() {
           getCoffeeImagesService: mockGetCoffeeImageService,
           getUidService: mockGetUidService,
           coffeeImageRepository: mockCoffeeImageRepository,
-          favoriteCoffeeImageRepository: mockFavoriteCoffeeImageRepository,
         );
       },
       act: (cubit) => cubit.nextCoffeeImage(currentImageId: 'current_image_id'),
