@@ -139,6 +139,26 @@ class S {
       args: [],
     );
   }
+
+  /// `No Favorites Yet`
+  String get no_favorites_yet {
+    return Intl.message(
+      'No Favorites Yet',
+      name: 'no_favorites_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add photos to your favorites to see them here.`
+  String get add_favorites {
+    return Intl.message(
+      'Add photos to your favorites to see them here.',
+      name: 'add_favorites',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

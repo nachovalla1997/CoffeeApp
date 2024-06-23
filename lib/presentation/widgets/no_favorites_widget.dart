@@ -1,3 +1,4 @@
+import 'package:coffee_app/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,7 +20,7 @@ class NoFavoritesWidget extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             Text(
-              'No Favorites Yet',
+              Localization.current.no_favorites_yet,
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
@@ -28,7 +29,7 @@ class NoFavoritesWidget extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             Text(
-              'Add photos to your favorites to see them here.',
+              Localization.current.add_favorites,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16.0,
