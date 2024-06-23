@@ -87,6 +87,19 @@ class MockICoffeeImageRepository extends _i1.Mock
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<List<_i2.CoffeeImage>> getCoffeeImages(
+          {required List<String>? ids}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCoffeeImages,
+          [],
+          {#ids: ids},
+        ),
+        returnValue:
+            _i4.Future<List<_i2.CoffeeImage>>.value(<_i2.CoffeeImage>[]),
+      ) as _i4.Future<List<_i2.CoffeeImage>>);
 }
 
 /// A class which mocks [IFavoriteCoffeeImageRepository].
@@ -103,18 +116,6 @@ class MockIFavoriteCoffeeImageRepository extends _i1.Mock
       (super.noSuchMethod(
         Invocation.method(
           #saveFavoriteCoffeeImage,
-          [],
-          {#id: id},
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<void> deleteFavoriteCoffeeImage({required String? id}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #deleteFavoriteCoffeeImage,
           [],
           {#id: id},
         ),

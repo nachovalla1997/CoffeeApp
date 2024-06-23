@@ -4,23 +4,12 @@ import 'dart:typed_data';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:coffee_app/business_logic/cubits/coffee_image/coffee_image_cubit.dart';
 import 'package:coffee_app/models/coffee_image.dart';
-import 'package:coffee_app/repositories_interfaces/i_coffee_image_repository.dart';
-import 'package:coffee_app/repositories_interfaces/i_favorite_coffee_image_repository.dart';
-import 'package:coffee_app/services_interfaces/i_get_coffee_image_service.dart';
-import 'package:coffee_app/services_interfaces/i_get_uid_service.dart';
 import 'package:coffee_app/utilities/enums.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'mocks/test.mocks.mocks.dart';
 
-@GenerateMocks([
-  ICoffeeImageRepository,
-  IFavoriteCoffeeImageRepository,
-  IGetCoffeeImageService,
-  IGetUidService,
-])
 void main() {
   late MockICoffeeImageRepository mockCoffeeImageRepository;
   late MockIGetCoffeeImageService mockGetCoffeeImageService;
