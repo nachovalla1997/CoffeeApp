@@ -129,6 +129,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Zoom`
+  String get zoom {
+    return Intl.message(
+      'Zoom',
+      name: 'zoom',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

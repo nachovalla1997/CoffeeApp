@@ -1,4 +1,7 @@
+import 'package:coffee_app/business_logic/cubits/zoom_slider/zoom_slider_cubit.dart';
+import 'package:coffee_app/presentation/widgets/zoom_slider_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FavoritePhotosScreen extends StatefulWidget {
   const FavoritePhotosScreen({super.key});
@@ -8,57 +11,45 @@ class FavoritePhotosScreen extends StatefulWidget {
 }
 
 class FavoritePhotosScreenState extends State<FavoritePhotosScreen> {
-  double _sliderValue = 2.0;
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              // TODO: Add localizations.
-              const Text('Zoom:'),
-              Expanded(
-                child: Slider(
-                  value: _sliderValue,
-                  min: 1.0,
-                  max: 6.0,
-                  divisions: 5,
-                  onChanged: (value) {
-                    setState(() {
-                      _sliderValue = value;
-                    });
+    return BlocBuilder<ZoomSliderCubit, ZoomSliderState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ZoomSliderWidget(
+                  onSliderChanged: (value) {
+                    context.read<ZoomSliderCubit>().changeSliderValue(value);
                   },
+                  sliderValue: state.sliderValue,
+                )),
+            Expanded(
+              child: GridView.builder(
+                padding: const EdgeInsets.all(8.0),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: state.sliderValue.toInt(),
+                  crossAxisSpacing: 8.0,
+                  mainAxisSpacing: 8.0,
                 ),
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return GridTile(
+                    // child: Image.network(
+                    //   widget.favoritePhotos[index],
+                    //   fit: BoxFit.cover,
+                    // ),
+                    child: Container(
+                      color: Colors.grey[800],
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: GridView.builder(
-            padding: const EdgeInsets.all(8.0),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: _sliderValue.toInt(),
-              crossAxisSpacing: 8.0,
-              mainAxisSpacing: 8.0,
             ),
-            itemCount: 20,
-            itemBuilder: (context, index) {
-              return GridTile(
-                // child: Image.network(
-                //   widget.favoritePhotos[index],
-                //   fit: BoxFit.cover,
-                // ),
-                child: Container(
-                  color: Colors.grey[800],
-                ),
-              );
-            },
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 }
