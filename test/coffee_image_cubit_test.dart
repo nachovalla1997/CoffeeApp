@@ -132,56 +132,5 @@ void main() {
         GetCoffeeImageState.initial().copyWith(status: GetImageStatus.error),
       ],
     );
-
-    blocTest<CoffeeImageCubit, GetCoffeeImageState>(
-      'emits [loading, loaded] when addCoffeeImageToFavorites succeeds',
-      build: () {
-        when(mockFavoriteCoffeeImageRepository.saveFavoriteCoffeeImage(
-                id: anyNamed('id')))
-            .thenAnswer((_) async => {});
-        when(mockGetUidService.getUid()).thenReturn(testUid);
-        when(mockGetCoffeeImageService.getCoffeeImage())
-            .thenAnswer((_) async => testImageBytes);
-        when(mockCoffeeImageRepository.saveCoffeeImage(
-                id: anyNamed('id'), coffeeImage: anyNamed('coffeeImage')))
-            .thenAnswer((_) async => testCoffeeImage);
-
-        return CoffeeImageCubit(
-          getCoffeeImagesService: mockGetCoffeeImageService,
-          getUidService: mockGetUidService,
-          coffeeImageRepository: mockCoffeeImageRepository,
-          favoriteCoffeeImageRepository: mockFavoriteCoffeeImageRepository,
-        );
-      },
-      act: (cubit) =>
-          cubit.addCoffeeImageToFavorites(currentImageId: 'current_image_id'),
-      expect: () => [
-        GetCoffeeImageState.initial().copyWith(status: GetImageStatus.loading),
-        GetCoffeeImageState.initial().copyWith(
-            status: GetImageStatus.loaded, coffeeImage: testCoffeeImage),
-      ],
-    );
-
-    blocTest<CoffeeImageCubit, GetCoffeeImageState>(
-      'emits [loading, error] when addCoffeeImageToFavorites fails to save favorite',
-      build: () {
-        when(mockFavoriteCoffeeImageRepository.saveFavoriteCoffeeImage(
-                id: anyNamed('id')))
-            .thenThrow(Exception('error'));
-
-        return CoffeeImageCubit(
-          getCoffeeImagesService: mockGetCoffeeImageService,
-          getUidService: mockGetUidService,
-          coffeeImageRepository: mockCoffeeImageRepository,
-          favoriteCoffeeImageRepository: mockFavoriteCoffeeImageRepository,
-        );
-      },
-      act: (cubit) =>
-          cubit.addCoffeeImageToFavorites(currentImageId: 'current_image_id'),
-      expect: () => [
-        GetCoffeeImageState.initial().copyWith(status: GetImageStatus.loading),
-        GetCoffeeImageState.initial().copyWith(status: GetImageStatus.error),
-      ],
-    );
   });
 }

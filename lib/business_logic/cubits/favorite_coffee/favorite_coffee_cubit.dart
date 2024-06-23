@@ -20,6 +20,10 @@ class FavoriteCoffeeCubit extends Cubit<FavoriteCoffeeState> {
 
   Future getFavoriteImages() async {
     emit(state.copyWith(status: GetFavoriteImagesStatus.loading));
+    await _fetchFavoriteImages();
+  }
+
+  Future<void> _fetchFavoriteImages() async {
     try {
       final favoriteImagesIds =
           await _favoriteCoffeeImageRepository.getFavoriteCoffeeImages();
@@ -32,5 +36,18 @@ class FavoriteCoffeeCubit extends Cubit<FavoriteCoffeeState> {
     } catch (e) {
       emit(state.copyWith(status: GetFavoriteImagesStatus.error));
     }
+  }
+
+  Future addCoffeeImageToFavorites({required String currentImageId}) async {
+    emit(state.copyWith(status: GetFavoriteImagesStatus.loading));
+    try {
+      await _favoriteCoffeeImageRepository.saveFavoriteCoffeeImage(
+          id: currentImageId);
+    } catch (e) {
+      emit(state.copyWith(status: GetFavoriteImagesStatus.error));
+      return;
+    }
+
+    await _fetchFavoriteImages();
   }
 }

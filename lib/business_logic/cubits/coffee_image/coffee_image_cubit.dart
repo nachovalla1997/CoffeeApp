@@ -58,18 +58,4 @@ class CoffeeImageCubit extends Cubit<GetCoffeeImageState> {
 
     await _fetchAndSaveCoffeeImage();
   }
-
-// TODO: Move this method to the FavoriteCoffeeCubit.
-  Future addCoffeeImageToFavorites({required String currentImageId}) async {
-    emit(state.copyWith(status: GetImageStatus.loading));
-    try {
-      await _favoriteCoffeeImageRepository.saveFavoriteCoffeeImage(
-          id: currentImageId);
-    } catch (e) {
-      emit(state.copyWith(status: GetImageStatus.error));
-      return;
-    }
-
-    await _fetchAndSaveCoffeeImage();
-  }
 }

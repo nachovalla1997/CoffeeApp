@@ -30,12 +30,7 @@ class FavoriteImagesScreenState extends State<FavoriteImagesScreen> {
                   sliderValue: stateSlider.sliderValue,
                 )),
             Expanded(
-              child: BlocConsumer<FavoriteCoffeeCubit, FavoriteCoffeeState>(
-                listener: (context, state) {
-                  if (state.status == GetFavoriteImagesStatus.initial) {
-                    context.read<FavoriteCoffeeCubit>().getFavoriteImages();
-                  }
-                },
+              child: BlocBuilder<FavoriteCoffeeCubit, FavoriteCoffeeState>(
                 builder: (context, stateFavorite) {
                   if (stateFavorite.status == GetFavoriteImagesStatus.loaded) {
                     return GridView.builder(
