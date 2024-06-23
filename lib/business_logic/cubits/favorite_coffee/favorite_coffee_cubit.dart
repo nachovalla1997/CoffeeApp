@@ -11,6 +11,8 @@ class FavoriteCoffeeCubit extends Cubit<FavoriteCoffeeState> {
   final ICoffeeImageRepository _coffeeImageRepository;
   final IFavoriteCoffeeImageRepository _favoriteCoffeeImageRepository;
 
+  List<CoffeeImage> _favoriteImagesCache = [];
+
   FavoriteCoffeeCubit({
     required ICoffeeImageRepository coffeeImageRepository,
     required IFavoriteCoffeeImageRepository favoriteCoffeeImageRepository,
@@ -18,9 +20,17 @@ class FavoriteCoffeeCubit extends Cubit<FavoriteCoffeeState> {
         _favoriteCoffeeImageRepository = favoriteCoffeeImageRepository,
         super(FavoriteCoffeeState.initial());
 
-  Future getFavoriteImages() async {
+  Future<void> getFavoriteImages() async {
     emit(state.copyWith(status: GetFavoriteImagesStatus.loading));
-    await _fetchFavoriteImages();
+
+    if (_favoriteImagesCache.isNotEmpty) {
+      emit(state.copyWith(
+        status: GetFavoriteImagesStatus.loaded,
+        favoriteImages: _favoriteImagesCache,
+      ));
+    } else {
+      await _fetchFavoriteImages();
+    }
   }
 
   Future<void> _fetchFavoriteImages() async {
@@ -29,6 +39,9 @@ class FavoriteCoffeeCubit extends Cubit<FavoriteCoffeeState> {
           await _favoriteCoffeeImageRepository.getFavoriteCoffeeImages();
       final favoriteImages =
           await _coffeeImageRepository.getCoffeeImages(ids: favoriteImagesIds);
+
+      _favoriteImagesCache = favoriteImages;
+
       emit(state.copyWith(
         status: GetFavoriteImagesStatus.loaded,
         favoriteImages: favoriteImages,
@@ -38,16 +51,19 @@ class FavoriteCoffeeCubit extends Cubit<FavoriteCoffeeState> {
     }
   }
 
-  Future addCoffeeImageToFavorites({required String currentImageId}) async {
+  Future<void> addCoffeeImageToFavorites(
+      {required CoffeeImage currentCoffeeImage}) async {
     emit(state.copyWith(status: GetFavoriteImagesStatus.loading));
     try {
       await _favoriteCoffeeImageRepository.saveFavoriteCoffeeImage(
-          id: currentImageId);
+          id: currentCoffeeImage.id);
+      _favoriteImagesCache.add(currentCoffeeImage);
+      emit(state.copyWith(
+        status: GetFavoriteImagesStatus.loaded,
+        favoriteImages: _favoriteImagesCache,
+      ));
     } catch (e) {
       emit(state.copyWith(status: GetFavoriteImagesStatus.error));
-      return;
     }
-
-    await _fetchFavoriteImages();
   }
 }

@@ -26,7 +26,7 @@ class CoffeeCard extends StatelessWidget {
               context.read<CoffeeImageCubit>().getCoffeeImage();
               context
                   .read<FavoriteCoffeeCubit>()
-                  .addCoffeeImageToFavorites(currentImageId: coffeeImage.id);
+                  .addCoffeeImageToFavorites(currentCoffeeImage: coffeeImage);
             },
             onSkip: () {
               context
